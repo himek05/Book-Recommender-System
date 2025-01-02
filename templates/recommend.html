@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #0D1321; /* Dark blue */
+            color: #EFF1F3; /* Light off-white */
+        }
+        .navbar {
+            background-color: #C5832B; /* Bronze */
+            border: none;
+        }
+        .navbar-brand, .nav > li > a {
+            color: #EFF1F3 !important; /* Light off-white */
+        }
+        .nav > li > a:hover, .nav > li > a:focus {
+            background-color: #0D1321; /* Dark blue */
+            color: #C5832B !important; /* Bronze */
+        }
+        h1 {
+            color: #EFF1F3; /* Light off-white */
+        }
+        .card {
+            background-color: #0D1321; /* Dark blue */
+            border: 1px solid #C5832B; /* Bronze */
+            margin-bottom: 20px;
+            width:220px;
+        }
+        .card-body {
+            color: #EFF1F3; /* Light off-white */
+        }
+        .card-img-top {
+            width: 100%; /* Full width */
+            height: 220px; /* Smaller height */
+            border-bottom: 1px solid #C5832B; /* Bronze */
+        }
+        p {
+            color: #C5832B;
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin-top: 5px;
+            margin:5px;
+        }
+        h4 {
+            color: #EFF1F3; /* Light off-white */
+            font-size: 1.3rem;
+            margin:5px;
+        }
+        .form-control {
+            background-color: #EFF1F3;
+            color: #0D1321;
+            border: 1px solid #C5832B;
+            width:500px;
+            height:55px;
+            font-size:2rem;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #C5832B;
+        }
+        .btn-warning {
+            background-color: #C5832B;
+            color: #EFF1F3;
+            border: none;
+        }
+        .btn-warning:hover {
+            background-color: #eab676;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand">My Book Recommender</a>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/recommend">Recommend</a></li>
+            <li><a>Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-white" style="font-size:50px">Recommend Books</h1>
+                <form action="/recommend_books" method="post">
+                    <input name="user_input" type="text" class="form-control" placeholder="Enter Book Name..."><br>
+                    <input type="submit" class="btn btn-lg btn-warning">
+                </form>
+            </div>
+
+            {% if data %}
+
+             {% for i in data %}
+                <div class="col-md-3" style="margin-top:50px">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{i[2]}}">
+                            <p class="text-white">{{i[0]}}</p>
+                            <h4 class="text-white">{{i[1]}}</h4>
+                        </div>
+                    </div>
+                </div>
+             {% endfor %}
+
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
